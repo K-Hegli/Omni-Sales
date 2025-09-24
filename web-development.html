@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Development &amp; SEO - Omni Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d0d1a;
+        color: #e0e0e0;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #ff2a5f, #ff5c33);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      th {
+        background-color: #1a1a2e;
+      }
+      td,
+      th {
+        border: 1px solid #2a2a4a;
+      }
+      .check {
+        color: #4ade80;
+      }
+      .cross {
+        color: #f87171;
+      }
+      .section-divider {
+        border-top: 1px solid #2a2a4a;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header class="container mx-auto px-6 py-8">
+      <div class="flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-4">
+          <svg
+            class="h-10 w-10"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="logoGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #ff2a5f"></stop>
+                <stop offset="100%" style="stop-color: #ff5c33"></stop>
+              </linearGradient>
+            </defs>
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="url(#logoGradient)"
+              stroke-width="10"
+            ></circle>
+          </svg>
+          <span class="text-3xl font-bold text-white">Omni Solutions</span>
+        </a>
+        <a
+          href="index.html"
+          class="text-gray-300 hover:text-white transition duration-300"
+          >&larr; Back to Hub</a
+        >
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+      <section class="py-16">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-white">
+            Web Development Packages
+          </h1>
+          <p class="text-lg text-gray-400 mt-2">
+            Detailed comparison of our web development tiers.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-300">
+            <thead class="text-xs text-white uppercase">
+              <tr>
+                <th scope="col" class="py-3 px-6 rounded-tl-lg">Feature</th>
+                <th scope="col" class="py-3 px-6 text-center">
+                  Omni Offer (Small)
+                </th>
+                <th scope="col" class="py-3 px-6 text-center">
+                  Hoornet (Medium)
+                </th>
+                <th scope="col" class="py-3 px-6 text-center rounded-tr-lg">
+                  Solo Entrepreneur (Large)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Price
+                </th>
+                <td
+                  class="py-4 px-6 text-center font-bold text-lg gradient-text"
+                >
+                  €1297
+                </td>
+                <td
+                  class="py-4 px-6 text-center font-bold text-lg gradient-text"
+                >
+                  €2490
+                </td>
+                <td
+                  class="py-4 px-6 text-center font-bold text-lg gradient-text"
+                >
+                  €8900
+                </td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Free Consultation
+                </th>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Website Size
+                </th>
+                <td class="py-4 px-6 text-center">One-page (3 sections)</td>
+                <td class="py-4 px-6 text-center">Up to 5 pages</td>
+                <td class="py-4 px-6 text-center">Up to 10 pages</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Mobile-Optimized Design
+                </th>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Domain Included (1st Year)
+                </th>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Hosting
+                </th>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Contact Form
+                </th>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  CMS (Content Management)
+                </th>
+                <td class="py-4 px-6 text-center text-2xl cross">–</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Blog / News Section
+                </th>
+                <td class="py-4 px-6 text-center text-2xl cross">–</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="border-b border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap"
+                >
+                  Custom Features
+                </th>
+                <td class="py-4 px-6 text-center text-2xl cross">–</td>
+                <td class="py-4 px-6 text-center text-2xl cross">–</td>
+                <td class="py-4 px-6 text-center text-2xl check">✓</td>
+              </tr>
+              <tr class="bg-gray-800">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-white whitespace-nowrap rounded-bl-lg"
+                >
+                  Initial SEO Setup
+                </th>
+                <td class="py-4 px-6 text-center">Basic</td>
+                <td class="py-4 px-6 text-center">Improved</td>
+                <td class="py-4 px-6 text-center rounded-br-lg">Advanced</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="py-16 section-divider">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold text-white">
+            Monthly SEO Packages
+          </h2>
+          <p class="text-lg text-gray-400 mt-2 max-w-3xl mx-auto">
+            Enhance visibility and drive organic traffic. SEO services are
+            recurring and billed monthly, separate from web development.
+          </p>
+        </div>
+
+        <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-300">
+            <thead class="text-xs text-white uppercase">
+              <tr>
+                <th scope="col" class="py-3 px-6 rounded-tl-lg">Package</th>
+                <th scope="col" class="py-3 px-6 text-center">Monthly Price</th>
+                <th scope="col" class="py-3 px-6 text-center">Best For</th>
+                <th scope="col" class="py-3 px-6">Includes</th>
+                <th scope="col" class="py-3 px-6 text-center rounded-tr-lg">
+                  Results Timeline
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-700 align-top">
+                <th scope="row" class="py-4 px-6 font-semibold text-white">
+                  Starter Package (Basic SEO)
+                </th>
+                <td
+                  class="py-4 px-6 text-center font-bold text-lg gradient-text"
+                >
+                  €500 / month
+                </td>
+                <td class="py-4 px-6 text-center text-sm">
+                  Small businesses, startups, local shops
+                </td>
+                <td class="py-4 px-6">
+                  <ul class="list-disc list-inside space-y-1 text-sm">
+                    <li>Website SEO Audit</li>
+                    <li>Keyword Research (up to 20 keywords)</li>
+                    <li>On-Page Optimization (meta tags, titles, headers)</li>
+                    <li>
+                      Basic Technical SEO (sitemap, robots.txt, SSL check)
+                    </li>
+                    <li>Google Business Profile Setup/Optimization</li>
+                    <li>2 Blog/Content optimizations per month</li>
+                    <li>Monthly Performance Report</li>
+                  </ul>
+                </td>
+                <td class="py-4 px-6 text-center text-sm">10–12 months</td>
+              </tr>
+              <tr class="border-b border-gray-700 align-top">
+                <th scope="row" class="py-4 px-6 font-semibold text-white">
+                  Growth Package (Standard SEO)
+                </th>
+                <td
+                  class="py-4 px-6 text-center font-bold text-lg gradient-text"
+                >
+                  €800 / month
+                </td>
+                <td class="py-4 px-6 text-center text-sm">
+                  Growing businesses seeking higher rankings &amp; traffic
+                </td>
+                <td class="py-4 px-6">
+                  <ul class="list-disc list-inside space-y-1 text-sm">
+                    <li>Everything in Starter</li>
+                    <li>Keyword Research (up to 40 keywords)</li>
+                    <li>
+                      Advanced On-Page Optimization (schema, speed optimization)
+                    </li>
+                    <li>Local SEO (citations, directory listings)</li>
+                    <li>Link Building (1 backlink/month)</li>
+                    <li>Competitor Analysis</li>
+                    <li>Content Strategy (4 blog posts per month)</li>
+                    <li>Monthly Reporting</li>
+                  </ul>
+                </td>
+                <td class="py-4 px-6 text-center text-sm">8–9 months</td>
+              </tr>
+              <tr class="align-top bg-gray-800">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-semibold text-white rounded-bl-lg"
+                >
+                  Premium Package (Advanced SEO)
+                </th>
+                <td
+                  class="py-4 px-6 text-center font-bold text-lg gradient-text"
+                >
+                  €1200 / month
+                </td>
+                <td class="py-4 px-6 text-center text-sm">
+                  E-commerce, enterprise, and national brands
+                </td>
+                <td class="py-4 px-6">
+                  <ul class="list-disc list-inside space-y-1 text-sm">
+                    <li>Everything in Growth</li>
+                    <li>Keyword Research (up to 60 keywords)</li>
+                    <li>
+                      Full Technical SEO (crawl errors, indexing, Core Web
+                      Vitals)
+                    </li>
+                    <li>
+                      Advanced Link Building (2 authority backlinks/month)
+                    </li>
+                    <li>Content Marketing (8 blog posts per month)</li>
+                    <li>Landing Page Optimization for conversions</li>
+                    <li>Competitor Backlink Analysis</li>
+                    <li>Conversion Tracking &amp; ROI Analysis</li>
+                    <li>Bi-weekly or Weekly Performance Reporting</li>
+                  </ul>
+                </td>
+                <td class="py-4 px-6 text-center text-sm rounded-br-lg">
+                  5–6 months
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center py-8 mt-8 border-t border-gray-800">
+      <p class="text-gray-500">&copy; 2025 Omni Solutions. Internal Hub.</p>
+    </footer>
+  </body>
+</html>

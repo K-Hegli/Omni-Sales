@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Offer Builder - Omni Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0D0D1A 0%, #1A1A2E 100%);
+            color: #E0E0E0;
+            min-height: 100vh;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ff2a5f, #ff5c33);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .service-card {
+            cursor: grab;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 92, 51, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .service-card:hover::before {
+            left: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #ff5c33;
+            box-shadow: 0 20px 40px -12px rgba(255, 42, 95, 0.3);
+        }
+        .service-card:active {
+            cursor: grabbing;
+            transform: rotate(5deg) scale(1.05);
+        }
+        .service-price {
+            background: linear-gradient(45deg, #ff2a5f, #ff5c33);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        #dropzone {
+            border: 3px dashed #4A5568;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        #dropzone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 92, 51, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #dropzone.drag-over {
+            border-color: #ff5c33;
+            background: linear-gradient(135deg, #1f1f3d 0%, #2a1f3d 100%);
+            box-shadow: 0 0 40px rgba(255, 92, 51, 0.3);
+            transform: scale(1.02);
+        }
+        #dropzone.drag-over::before {
+            opacity: 1;
+        }
+        .offer-item {
+            animation: slideInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #2A2A4E 0%, #1E1E3F 100%);
+            border-left: 4px solid #ff5c33;
+            position: relative;
+            overflow: hidden;
+        }
+        .offer-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ff2a5f, #ff5c33);
+            transition: left 0.3s ease;
+        }
+        .offer-item:hover::before {
+            left: 100%;
+        }
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .glow-button {
+            background: linear-gradient(45deg, #ff2a5f, #ff5c33);
+            box-shadow: 0 4px 15px rgba(255, 42, 95, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 8px 25px rgba(255, 42, 95, 0.6);
+            transform: translateY(-2px);
+        }
+        .modal-backdrop {
+            backdrop-filter: blur(10px);
+            background: rgba(13, 13, 26, 0.8);
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            border: 1px solid #ff5c33;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+        .service-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .category-header {
+            background: linear-gradient(90deg, #ff2a5f, #ff5c33);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .price-breakdown {
+            background: linear-gradient(135deg, #16213E 0%, #1A1A2E 100%);
+            border: 1px solid #2A2A4E;
+        }
+    </style>
+  </head>
+  <body class="antialiased">
+    <header class="container mx-auto px-6 py-8">
+      <div
+        class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+      >
+        <a
+          href="index.html"
+          class="inline-flex items-center gap-3 text-gray-300 hover:text-white transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7 7-7m8 14l-7-7 7-7"
+            />
+          </svg>
+          <span>Back to Sales Hub</span>
+        </a>
+        <span class="text-2xl font-bold text-white">Omni Combo Packages</span>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 pb-24 space-y-12">
+      <section class="card rounded-2xl p-8">
+        <span
+          class="badge inline-flex items-center gap-2 px-3 py-1 rounded-full uppercase text-xs tracking-widest"
+          >Strategic Bundles</span
+        >
+        <h1 class="mt-4 text-3xl md:text-4xl font-bold text-white">
+          Bundle Overview
+        </h1>
+        <p class="mt-4 text-gray-400 max-w-3xl">
+          Position these packages when clients require cross-functional
+          transformation. Each bundle combines services, consulting, and managed
+          enablement. Use the matrix below to match client maturity with the
+          right offer.
+        </p>
+      </section>
+
+      <section class="card rounded-2xl p-8">
+        <h2 class="text-2xl font-bold text-white">Package Matrix</h2>
+        <div class="mt-6 overflow-x-auto">
+          <table class="w-full text-left text-sm text-gray-300">
+            <thead
+              class="table-header text-xs uppercase tracking-widest text-[#ff5c33]"
+            >
+              <tr>
+                <th class="px-4 py-3">Package</th>
+                <th class="px-4 py-3">Best For</th>
+                <th class="px-4 py-3">Core Modules</th>
+                <th class="px-4 py-3">Outcomes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-700">
+              <tr>
+                <td class="px-4 py-4 font-semibold text-white">Omni Mini</td>
+                <td class="px-4 py-4">Pre-launch ventures &amp; pilot teams</td>
+                <td class="px-4 py-4">
+                  Brand foundations, rapid web, starter social
+                </td>
+                <td class="px-4 py-4">Launch-ready brand + 90-day GTM plan</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-4 font-semibold text-white">Omni Alpha</td>
+                <td class="px-4 py-4">
+                  Scale-ups aiming for growth inflection
+                </td>
+                <td class="px-4 py-4">
+                  Product revamp, performance marketing, sales enablement
+                </td>
+                <td class="px-4 py-4">
+                  Pipeline lift, conversion optimization, aligned GTM teams
+                </td>
+              </tr>
+              <tr>
+                <td class="px-4 py-4 font-semibold text-white">Omni Omega</td>
+                <td class="px-4 py-4">
+                  Enterprise transformations &amp; category leaders
+                </td>
+                <td class="px-4 py-4">
+                  Business model innovation, R&amp;D pods, global comms
+                </td>
+                <td class="px-4 py-4">
+                  New revenue lines, market expansion, executive advisory
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <article class="card rounded-2xl p-8">
+          <h2 class="text-2xl font-bold gradient-text">Omni Mini</h2>
+          <p class="mt-4 text-gray-400">
+            Kickstart brand presence with a sprint-based engagement that sets
+            foundations for digital credibility and demand.
+          </p>
+          <ul class="mt-6 space-y-3 text-gray-300 text-sm">
+            <li>• Brand compass workshop</li>
+            <li>• Launch-ready site &amp; asset toolkit</li>
+            <li>• Ad copy &amp; creative starter pack</li>
+            <li>• Enablement: 3-week founder coaching</li>
+          </ul>
+          <div class="mt-6 text-gray-400 text-sm">
+            <p>
+              <span class="text-white font-semibold">Investment:</span> €18,000
+            </p>
+            <p>
+              <span class="text-white font-semibold">Timeline:</span> 6 weeks
+            </p>
+          </div>
+          <a
+            href="assets/decks/omni-mini.pdf"
+            class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >Download Deck
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+              />
+            </svg>
+          </a>
+        </article>
+
+        <article class="card rounded-2xl p-8">
+          <h2 class="text-2xl font-bold gradient-text">Omni Alpha</h2>
+          <p class="mt-4 text-gray-400">
+            Build a repeatable growth engine with integrated product, marketing,
+            and revenue enablement squads.
+          </p>
+          <ul class="mt-6 space-y-3 text-gray-300 text-sm">
+            <li>• Product experience redesign</li>
+            <li>• Marketing automation &amp; lifecycle</li>
+            <li>• Sales enablement playbooks</li>
+            <li>• Quarterly growth councils</li>
+          </ul>
+          <div class="mt-6 text-gray-400 text-sm">
+            <p>
+              <span class="text-white font-semibold">Investment:</span> €46,500
+            </p>
+            <p>
+              <span class="text-white font-semibold">Timeline:</span> 12 weeks
+            </p>
+          </div>
+          <a
+            href="assets/decks/omni-alpha.pdf"
+            class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >Download Deck
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+              />
+            </svg>
+          </a>
+        </article>
+
+        <article class="card rounded-2xl p-8">
+          <h2 class="text-2xl font-bold gradient-text">Omni Omega</h2>
+          <p class="mt-4 text-gray-400">
+            Orchestrate category leadership through deep partnership—embedding
+            Omni pods across strategy, innovation, and GTM.
+          </p>
+          <ul class="mt-6 space-y-3 text-gray-300 text-sm">
+            <li>• Strategic advisory board</li>
+            <li>• Dedicated R&amp;D + product pods</li>
+            <li>• Always-on creative studio</li>
+            <li>• Market expansion &amp; M&amp;A support</li>
+          </ul>
+          <div class="mt-6 text-gray-400 text-sm">
+            <p>
+              <span class="text-white font-semibold">Investment:</span>
+              €120,000+
+            </p>
+            <p>
+              <span class="text-white font-semibold">Timeline:</span> 6-month
+              partnership
+            </p>
+          </div>
+          <a
+            href="assets/decks/omni-omega.pdf"
+            class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >Download Deck
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+              />
+            </svg>
+          </a>
+        </article>
+      </section>
+
+      <section class="card rounded-2xl p-8">
+        <h2 class="text-2xl font-bold text-white">Enablement Checklist</h2>
+        <ul class="mt-4 space-y-3 text-gray-400 text-sm">
+          <li>• Secure executive sponsor alignment before scoping.</li>
+          <li>
+            • Present ROI model using client metrics—template in Playbooks
+            folder.
+          </li>
+          <li>• Engage delivery leadership early to confirm capacity.</li>
+          <li>
+            • Capture cross-sell opportunities for services post-package
+            delivery.
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omni Solutions - Sales Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d0d1a;
+        color: #e0e0e0;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #ff2a5f, #ff5c33);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .card {
+        background-color: #1a1a2e;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow:
+          0 20px 25px -5px rgba(255, 42, 95, 0.1),
+          0 10px 10px -5px rgba(255, 92, 51, 0.08);
+      }
+      .combo-card {
+        border: 1px solid #333;
+        transition:
+          border-color 0.3s ease,
+          background-color 0.3s ease;
+      }
+      .combo-card:hover {
+        border-color: #ff5c33;
+        background-color: #1f1f3d;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Header -->
+    <header class="container mx-auto px-6 py-8">
+      <div
+        class="flex flex-col gap-6 md:flex-row md:justify-between md:items-center"
+      >
+        <div class="flex items-center gap-4">
+          <svg
+            class="h-10 w-10"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient
+                id="logoGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" style="stop-color: #ff2a5f"></stop>
+                <stop offset="100%" style="stop-color: #ff5c33"></stop>
+              </linearGradient>
+            </defs>
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="url(#logoGradient)"
+              stroke-width="10"
+            ></circle>
+          </svg>
+          <span class="text-3xl font-bold text-white">Omni Solutions</span>
+        </div>
+        <nav class="flex items-center gap-6 text-lg">
+          <a
+            href="#standard-offers"
+            class="text-gray-300 hover:text-white transition duration-300"
+            >Services</a
+          >
+          <a
+            href="#combo-packages"
+            class="text-gray-300 hover:text-white transition duration-300"
+            >Packages</a
+          >
+          <a
+            href="#playbooks"
+            class="text-gray-300 hover:text-white transition duration-300"
+            >Playbooks</a
+          >
+          <a
+            href="#inspiration"
+            class="text-gray-300 hover:text-white transition duration-300"
+            >Inspiration</a
+          >
+          <a
+            href="https://www.omnisolutions.fi/"
+            target="_blank"
+            class="hidden md:inline-block text-gray-300 hover:text-white transition duration-300"
+            >Main Site</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+      <!-- Hero Section -->
+      <section class="text-center py-16 md:py-24">
+        <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">
+          Sales &amp; Team Hub
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto">
+          Your central resource for Omni Solutions services, packages, sales
+          playbooks, and inspiration to help every consultant close with
+          confidence.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#standard-offers"
+            class="px-8 py-4 rounded-full bg-gradient-to-r from-[#ff2a5f] to-[#ff5c33] text-white font-semibold shadow-lg transition transform hover:-translate-y-1"
+            >Browse Services</a
+          >
+          <a
+            href="#playbooks"
+            class="px-8 py-4 rounded-full border border-[#ff5c33] text-white font-semibold transition hover:bg-[#1f1f3d]"
+            >View Playbooks</a
+          >
+        </div>
+      </section>
+
+      <!-- KPI Highlight -->
+      <section class="py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card rounded-xl p-6 text-center">
+          <p class="text-sm uppercase tracking-wide text-[#ff5c33]">
+            Avg. Project Value
+          </p>
+          <p class="mt-2 text-3xl font-bold text-white">€18.7K</p>
+          <p class="mt-2 text-gray-400">
+            Target upsell baseline when bundling Social Media + Videography.
+          </p>
+        </div>
+        <div class="card rounded-xl p-6 text-center">
+          <p class="text-sm uppercase tracking-wide text-[#ff5c33]">
+            Conversion Rate
+          </p>
+          <p class="mt-2 text-3xl font-bold text-white">42%</p>
+          <p class="mt-2 text-gray-400">
+            Latest quarter performance for consultants using Omni Alpha
+            playbook.
+          </p>
+        </div>
+        <div class="card rounded-xl p-6 text-center">
+          <p class="text-sm uppercase tracking-wide text-[#ff5c33]">
+            Client Satisfaction
+          </p>
+          <p class="mt-2 text-3xl font-bold text-white">4.8 / 5</p>
+          <p class="mt-2 text-gray-400">
+            Average post-delivery NPS across all service lines.
+          </p>
+        </div>
+      </section>
+
+      <!-- Standard Offers Section -->
+      <section id="standard-offers" class="py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Standard Service Packages
+          </h2>
+          <p class="text-gray-400 mt-2">
+            Click to view detailed breakdowns of our core service offerings.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Web Development Card -->
+          <a
+            href="web-development.html"
+            class="card block rounded-xl p-8 text-center shadow-lg"
+          >
+            <div class="text-5xl mb-4 gradient-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Web Development</h3>
+            <p class="text-gray-400 mt-2">
+              From single pages to complex web applications.
+            </p>
+          </a>
+          <!-- Photography Card -->
+          <a
+            href="photography.html"
+            class="card block rounded-xl p-8 text-center shadow-lg"
+          >
+            <div class="text-5xl mb-4 gradient-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Photography</h3>
+            <p class="text-gray-400 mt-2">
+              Professional photoshoots for brands and individuals.
+            </p>
+          </a>
+          <!-- Videography Card -->
+          <a
+            href="videography.html"
+            class="card block rounded-xl p-8 text-center shadow-lg"
+          >
+            <div class="text-5xl mb-4 gradient-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Videography</h3>
+            <p class="text-gray-400 mt-2">
+              Engaging video content for marketing and events.
+            </p>
+          </a>
+          <!-- Social Media Card -->
+          <a
+            href="social-media.html"
+            class="card block rounded-xl p-8 text-center shadow-lg"
+          >
+            <div class="text-5xl mb-4 gradient-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-16 w-16 mx-auto"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white">Social Media</h3>
+            <p class="text-gray-400 mt-2">
+              Full-service management for your online presence.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Combo Packages Section -->
+      <section id="combo-packages" class="py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Comprehensive Business Packages
+          </h2>
+          <p class="text-gray-400 mt-2">
+            Integrated solutions combining services, consulting, and R&amp;D for
+            transformative growth.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Omni Mini -->
+          <a href="combo-packages.html" class="combo-card block rounded-xl p-8">
+            <h3 class="text-2xl font-bold gradient-text">Omni Mini</h3>
+            <p class="text-gray-400 mt-2">
+              The essential starter package for new businesses and projects.
+              Foundational services to get you off the ground.
+            </p>
+            <ul class="mt-4 text-sm text-gray-400 space-y-2">
+              <li>• Brand discovery workshop</li>
+              <li>• Landing page &amp; launch assets</li>
+              <li>• 30-day campaign plan</li>
+            </ul>
+          </a>
+          <!-- Omni Alpha -->
+          <a href="combo-packages.html" class="combo-card block rounded-xl p-8">
+            <h3 class="text-2xl font-bold gradient-text">Omni Alpha</h3>
+            <p class="text-gray-400 mt-2">
+              The growth package. A balanced mix of development, marketing, and
+              strategic consulting to scale your operations.
+            </p>
+            <ul class="mt-4 text-sm text-gray-400 space-y-2">
+              <li>• Multi-channel funnel build</li>
+              <li>• Quarterly sales training</li>
+              <li>• Customer analytics dashboard</li>
+            </ul>
+          </a>
+          <!-- Omni Omega -->
+          <a href="combo-packages.html" class="combo-card block rounded-xl p-8">
+            <h3 class="text-2xl font-bold gradient-text">Omni Omega</h3>
+            <p class="text-gray-400 mt-2">
+              The ultimate partnership. Full-suite services including business
+              modeling, R&amp;D, and dedicated support for market leaders.
+            </p>
+            <ul class="mt-4 text-sm text-gray-400 space-y-2">
+              <li>• Dedicated product pod</li>
+              <li>• Always-on creative studio</li>
+              <li>• 24/7 strategic hotline</li>
+            </ul>
+          </a>
+        </div>
+      </section>
+
+      <!-- Playbooks Section -->
+      <section id="playbooks" class="py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Sales Playbooks &amp; Scripts
+          </h2>
+          <p class="text-gray-400 mt-2">
+            Quick-hit resources to prepare for discovery calls, demos, and
+            executive briefings.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="card rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-white">
+              Discovery Call Framework
+            </h3>
+            <p class="text-gray-400 mt-4">
+              Open strong, surface real needs, and create urgency with
+              value-based questioning.
+            </p>
+            <div
+              class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >
+              <span>Download PDF (available soon)</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="card rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-white">
+              Omni Alpha Demo Script
+            </h3>
+            <p class="text-gray-400 mt-4">
+              Guide prospects through the transformation journey with
+              interactive storytelling.
+            </p>
+            <div
+              class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >
+              <span>Download Script (available soon)</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="card rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-white">
+              Objection Handling Matrix
+            </h3>
+            <p class="text-gray-400 mt-4">
+              Overcome “budget”, “timing”, and “status quo” objections with
+              confidence.
+            </p>
+            <div
+              class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >
+              <span>View Matrix (available soon)</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inspiration Section -->
+      <section id="inspiration" class="py-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Wins &amp; Inspiration
+          </h2>
+          <p class="text-gray-400 mt-2">
+            Stories, quotes, and best practices from top-performing consultants.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <article class="card rounded-xl p-8">
+            <p class="text-sm uppercase tracking-wide text-[#ff5c33]">
+              Spotlight
+            </p>
+            <h3 class="mt-3 text-2xl font-bold text-white">
+              How Team Helsinki Closed a €240K Omni Omega Deal
+            </h3>
+            <p class="mt-4 text-gray-400">
+              A step-by-step breakdown of discovery, stakeholder mapping, and
+              value articulation that led to a record quarter.
+            </p>
+            <div
+              class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+            >
+              <span>Read Story (available soon)</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+                />
+              </svg>
+            </div>
+          </article>
+          <aside class="card rounded-xl p-8">
+            <h3 class="text-2xl font-bold text-white">Daily Motivation</h3>
+            <ul class="mt-4 space-y-4 text-gray-400">
+              <li>“Value isn’t price—value is the relief you unlock.”</li>
+              <li>
+                Micro-ritual: Start every morning with one customer success
+                story.
+              </li>
+              <li>
+                Reminder: Share wins in #sales-wins Slack channel before end of
+                day.
+              </li>
+            </ul>
+            <div class="mt-6">
+              <div
+                class="inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
+              >
+                <span>Download Win Template (available soon)</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9A2.25 2.25 0 007.5 21h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0016.5 8.25H15m-6 0V6a3 3 0 016 0v2.25m-6 0h6m-3 4.5v6"
+                  />
+                </svg>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 mt-16 border-t border-gray-800">
+      <p class="text-gray-500">&copy; 2025 Omni Solutions. Internal Hub.</p>
+    </footer>
+  </body>
+</html>
