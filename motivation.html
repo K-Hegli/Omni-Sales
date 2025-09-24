@@ -24,7 +24,7 @@
       .quote-carousel {
         position: relative;
         overflow: hidden;
-        min-height: 200px;
+        min-height: 300px;
         height: auto;
       }
       .quote-slide {
@@ -34,13 +34,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
+        gap: 2rem;
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
         transition:
-          opacity 0.8s ease,
-          transform 0.8s ease;
-        padding: 1rem 0;
+          opacity 1s ease,
+          transform 1s ease;
+        padding: 2rem 0;
       }
       .quote-slide.active {
         opacity: 1;
@@ -224,82 +224,50 @@
       </section>
 
       <section
-        class="bg-[#111129] border border-[#2a2a4e] rounded-3xl px-10 py-12 shadow-2xl"
+        class="bg-[#111129] border border-[#2a2a4e] rounded-3xl px-10 py-16 shadow-2xl"
       >
-        <div class="flex flex-col lg:flex-row gap-10 items-center">
-          <div class="flex-1 space-y-6 text-center lg:text-left">
-            <h2 class="text-3xl font-bold text-white">
+        <div class="max-w-6xl mx-auto space-y-10">
+          <div class="text-center space-y-6">
+            <span
+              class="pill inline-flex items-center px-4 py-2 rounded-full text-xs uppercase tracking-widest"
+            >
+              Daily Inspiration • Team Energy
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white">
               Morning Kickoff Quotes
             </h2>
-            <p class="text-gray-400">
-              Rotate these every stand-up to prime the team with purpose. Quotes
-              refresh automatically—perfect for huddles, Slack inspiration
-              drops, and deck openers.
+            <p class="text-xl text-gray-400 max-w-4xl mx-auto">
+              Rotate these every stand-up to prime the team with purpose. Quotes refresh automatically every 6 seconds—perfect for huddles, Slack inspiration drops, and deck openers. Add new quotes to the collection anytime.
             </p>
+          </div>
+          
+          <div class="max-w-5xl mx-auto">
             <div
-              class="quote-carousel bg-gradient-to-br from-[#1b1b36] to-[#15152a] rounded-2xl p-6 border border-[#2e2e54]"
+              class="quote-carousel bg-gradient-to-br from-[#1b1b36] to-[#15152a] rounded-3xl p-12 border border-[#2e2e54] shadow-2xl"
               id="quote-carousel"
             >
               <!-- Fallback quote if JS doesn't load -->
               <div class="quote-slide active">
                 <p
-                  class="text-lg md:text-xl lg:text-2xl italic text-white text-center px-4 leading-relaxed"
+                  class="text-2xl md:text-3xl lg:text-4xl italic text-white text-center px-6 leading-relaxed font-light"
                 >
                   "The secret of getting ahead is getting started."
                 </p>
-                <p class="text-sm md:text-base text-gray-400 mt-2">
+                <p class="text-lg md:text-xl text-gray-400 mt-6 text-center">
                   — Mark Twain
                 </p>
               </div>
             </div>
           </div>
-          <div class="w-full max-w-sm">
-            <div
-              class="resource-card bg-gradient-to-br from-[#1b1b36] to-[#15152a] rounded-2xl p-6 border border-[#2e2e54] shadow-lg"
-            >
-              <h3
-                class="text-xl font-semibold text-white flex items-center gap-2"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M12 6v6l4 2"
-                  />
-                </svg>
-                Ritual Rhythm
-              </h3>
-              <ul class="mt-4 text-sm text-gray-300 space-y-3">
-                <li>☕ 08:45 — Share quote of the day</li>
-                <li>💡 09:30 — 10-minute learning sprint</li>
-                <li>🎧 13:00 — Podcast takeaway in #wins channel</li>
-              </ul>
-              <div
-                class="mt-6 inline-flex items-center gap-2 text-[#ff5c33] font-semibold"
-              >
-                <span>Daily Openers Toolkit (available soon)</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
+          
+          <div class="text-center">
+            <div class="inline-flex items-center gap-4 bg-[#1a1a2e] rounded-full px-6 py-3 border border-[#27274a]">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-[#ff5c33] rounded-full animate-pulse"></div>
+                <span class="text-sm text-gray-400">Auto-rotating collection</span>
               </div>
+              <span class="text-xs text-gray-500">•</span>
+              <span class="text-sm text-gray-400" id="quote-counter">15+ quotes loaded</span>
             </div>
           </div>
         </div>
@@ -665,8 +633,11 @@
       <p class="text-gray-500">&copy; 2025 Omni Solutions. Internal Hub.</p>
     </footer>
 
+    <!-- Load quotes from external file -->
+    <script src="quotes.js"></script>
     <script>
-      const quotes = [
+      // Use quotes from external file, with fallback
+      const quotes = typeof motivationalQuotes !== 'undefined' ? motivationalQuotes : [
         {
           text: "The secret of getting ahead is getting started.",
           author: "Mark Twain",
@@ -690,7 +661,14 @@
       ];
 
       const carousel = document.getElementById("quote-carousel");
+      const counter = document.getElementById("quote-counter");
+      
       if (carousel) {
+        // Update counter with actual quote count
+        if (counter) {
+          counter.textContent = `${quotes.length} quotes loaded`;
+        }
+        
         // Clear fallback content
         carousel.innerHTML = "";
 
@@ -698,8 +676,8 @@
           const slide = document.createElement("div");
           slide.className = "quote-slide" + (index === 0 ? " active" : "");
           slide.innerHTML = `
-            <p class="text-lg md:text-xl lg:text-2xl italic text-white text-center px-4 leading-relaxed">"${quote.text}"</p>
-            <p class="text-sm md:text-base text-gray-400 mt-2">— ${quote.author}</p>
+            <p class="text-2xl md:text-3xl lg:text-4xl italic text-white text-center px-6 leading-relaxed font-light">"${quote.text}"</p>
+            <p class="text-lg md:text-xl text-gray-400 mt-6 text-center">— ${quote.author}</p>
           `;
           carousel.appendChild(slide);
         });
