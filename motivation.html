@@ -24,7 +24,8 @@
       .quote-carousel {
         position: relative;
         overflow: hidden;
-        height: 120px;
+        min-height: 200px;
+        height: auto;
       }
       .quote-slide {
         position: absolute;
@@ -33,12 +34,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
+        gap: 1rem;
         opacity: 0;
         transform: translateY(20px);
         transition:
           opacity 0.8s ease,
           transform 0.8s ease;
+        padding: 1rem 0;
       }
       .quote-slide.active {
         opacity: 1;
@@ -159,7 +161,22 @@
               refresh automatically—perfect for huddles, Slack inspiration
               drops, and deck openers.
             </p>
-            <div class="quote-carousel" id="quote-carousel"></div>
+            <div
+              class="quote-carousel bg-gradient-to-br from-[#1b1b36] to-[#15152a] rounded-2xl p-6 border border-[#2e2e54]"
+              id="quote-carousel"
+            >
+              <!-- Fallback quote if JS doesn't load -->
+              <div class="quote-slide active">
+                <p
+                  class="text-lg md:text-xl lg:text-2xl italic text-white text-center px-4 leading-relaxed"
+                >
+                  "The secret of getting ahead is getting started."
+                </p>
+                <p class="text-sm md:text-base text-gray-400 mt-2">
+                  — Mark Twain
+                </p>
+              </div>
+            </div>
           </div>
           <div class="w-full max-w-sm">
             <div
@@ -599,12 +616,15 @@
 
       const carousel = document.getElementById("quote-carousel");
       if (carousel) {
+        // Clear fallback content
+        carousel.innerHTML = "";
+
         quotes.forEach((quote, index) => {
           const slide = document.createElement("div");
           slide.className = "quote-slide" + (index === 0 ? " active" : "");
           slide.innerHTML = `
-            <p class="text-2xl md:text-3xl italic text-white text-center px-6">"${quote.text}"</p>
-            <p class="text-sm md:text-base text-gray-400">— ${quote.author}</p>
+            <p class="text-lg md:text-xl lg:text-2xl italic text-white text-center px-4 leading-relaxed">"${quote.text}"</p>
+            <p class="text-sm md:text-base text-gray-400 mt-2">— ${quote.author}</p>
           `;
           carousel.appendChild(slide);
         });
